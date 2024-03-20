@@ -7,29 +7,24 @@
 		<title>Document</title>
 	</head>
 	<body>
-		<div class="container" id="container01">
-			<div class="content" id="inputs">
-				<input
-					type="range"
-					name="level"
-					id="level"
-					min="0"
-					max="100"
-					value="0"
-					oninput="setTrigger(this.value)"
-				/>
-			</div>
-			<div id="canvasDiv">
-				<canvas id="canvas" width="500" height="500"></canvas>
-			</div>
+		<div class="interactHTML" id="sliderHTML">
+			<input
+				type="range"
+				name="slider"
+				id="sliderToUse"
+				min="0"
+				max="100"
+				value="0"
+				oninput="setTrigger(this.value)"
+			/>
+		</div>
+		<div>
+			<canvas id="canvas" width="500" height="500"></canvas>
 		</div>
 
 		<!-- RIVE  -->
 		<script src="https://unpkg.com/@rive-app/canvas@2.9.1"></script>
 		<script>
-			const level = document.getElementById("level");
-			const number = document.getElementById("num");
-
 			const realDisplayNum = () => {
 				document.getElementById("rangeValue").innerText;
 			};
@@ -40,21 +35,15 @@
 				canvas: document.getElementById("canvas"),
 				autoplay: true,
 				stateMachines: "interaction",
-				// fit: rive.fit.cover,
 				onLoad: () => {
 					const inputs = r.stateMachineInputs("interaction"); // get state machine
-					console.log(inputs);
 					sliderRive = inputs.find((i) => i.name === "slider"); // input in rive
 					sliderRive.value = 0;
 				},
-
-				// r.resizeDrawingSurfaceToCanvas();
 			});
 
 			const setTrigger = (n) => {
-				console.log(
-					(sliderRive.value = n) //document.getElementById("rangeValue").innerText)
-				);
+				sliderRive.value = n;
 			};
 		</script>
 	</body>
