@@ -7,43 +7,67 @@
 		<title>Donuts</title>
 	</head>
 	<body>
-		<div class="interactHTML" id="sliderHTML">
+		<div class="" id="">
 			<input
 				type="range"
-				name="slider"
-				id="sliderToUse"
 				min="0"
 				max="100"
 				value="0"
-				oninput="setTrigger(this.value)"
+				oninput="setTriggerA(this.value)"
 			/>
 		</div>
 		<div>
-			<canvas id="canvas" width="500" height="500"></canvas>
+			<canvas id="donut_one" width="500" height="500"></canvas>
+		</div>
+		<div class="" id="">
+			<input
+				type="range"
+				min="0"
+				max="12"
+				value="0"
+				oninput="setTriggerB(this.value)"
+			/>
+		</div>
+		<div>
+			<canvas id="donuts_ten" width="500" height="300"></canvas>
 		</div>
 
 		<!-- RIVE  -->
 		<script src="https://unpkg.com/@rive-app/canvas@2.9.1"></script>
-		<script>
-			const realDisplayNum = () => {
-				document.getElementById("rangeValue").innerText;
-			};
 
-			let sliderRive;
-			const r = new rive.Rive({
+		<script>
+			let sliderRiveA;
+			const riveA = new rive.Rive({
 				src: "donut.riv",
-				canvas: document.getElementById("canvas"),
+				canvas: document.getElementById("donut_one"),
 				autoplay: true,
 				stateMachines: "interaction",
 				onLoad: () => {
-					const inputs = r.stateMachineInputs("interaction"); // get state machine
-					sliderRive = inputs.find((i) => i.name === "slider"); // input in rive
-					sliderRive.value = 0;
+					const inputsA = riveA.stateMachineInputs("interaction"); // get state machine
+					sliderRiveA = inputsA.find((i) => i.name === "slider"); // input in rive
+					sliderRiveA.value = 0;
 				},
 			});
 
-			const setTrigger = (n) => {
-				sliderRive.value = n;
+			const setTriggerA = (n) => {
+				sliderRiveA.value = n;
+			};
+
+			let sliderRiveB;
+			const riveB = new rive.Rive({
+				src: "donuts.riv",
+				canvas: document.getElementById("donuts_ten"),
+				autoplay: true,
+				stateMachines: "interaction",
+				onLoad: () => {
+					const inputsB = riveB.stateMachineInputs("interaction"); // get state machine
+					sliderRiveB = inputsB.find((i) => i.name === "number"); // input in rive
+					sliderRiveB.value = 0;
+				},
+			});
+
+			const setTriggerB = (n) => {
+				sliderRiveB.value = n;
 			};
 		</script>
 	</body>
