@@ -40,6 +40,7 @@
 				canvas: document.getElementById("canvas"),
 				autoplay: true,
 				stateMachines: "interaction",
+				// fit: rive.fit.cover,
 				onLoad: () => {
 					const inputs = r.stateMachineInputs("interaction"); // get state machine
 					console.log(inputs);
@@ -50,7 +51,7 @@
 				// r.resizeDrawingSurfaceToCanvas();
 			});
 
-			const setSlider = (n) => {
+			const setTrigger = (n) => {
 				console.log(
 					(sliderRive.value = n) //document.getElementById("rangeValue").innerText)
 				);
