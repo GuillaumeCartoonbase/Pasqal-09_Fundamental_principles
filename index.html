@@ -12,7 +12,7 @@
 				type="range"
 				id="slider1"
 				min="0"
-				max="100"
+				max="16"
 				value="0"
 				oninput="setTriggerA(this.value)"
 			/>
@@ -31,7 +31,7 @@
 			/>
 		</div>
 		<div>
-			<canvas id="donuts_ten" width="500" height="300"></canvas>
+			<canvas id="donuts_ten" width="535" height="266"></canvas>
 		</div>
 
 		<!-- RIVE  -->
@@ -39,15 +39,15 @@
 
 		<script>
 			let sliderRiveA;
-			const riveA = new rive.Rive({
+			const donutA = new rive.Rive({
 				src: "donut.riv",
 				canvas: document.getElementById("donut_one"),
 				autoplay: true,
 				stateMachines: "interaction",
 				onLoad: () => {
 					// Prevent a blurry canvas by using the device pixel ratio
-					riveA.resizeDrawingSurfaceToCanvas();
-					const inputsA = riveA.stateMachineInputs("interaction"); // get state machine
+					donutA.resizeDrawingSurfaceToCanvas();
+					const inputsA = donutA.stateMachineInputs("interaction"); // get state machine
 					sliderRiveA = inputsA.find((i) => i.name === "slider"); // input in rive
 					sliderRiveA.value = 0;
 				},
@@ -58,17 +58,17 @@
 			};
 
 			let sliderRiveB;
-			const riveB = new rive.Rive({
+			const donutB = new rive.Rive({
 				src: "donuts.riv",
 				canvas: document.getElementById("donuts_ten"),
 				autoplay: true,
 				stateMachines: "interaction",
 				onLoad: () => {
-					const inputsB = riveB.stateMachineInputs("interaction"); // get state machine
+					const inputsB = donutB.stateMachineInputs("interaction"); // get state machine
 					sliderRiveB = inputsB.find((i) => i.name === "number"); // input in rive
 					sliderRiveB.value = 0;
 					// Prevent a blurry canvas by using the device pixel ratio
-					riveB.resizeDrawingSurfaceToCanvas();
+					donutB.resizeDrawingSurfaceToCanvas();
 				},
 			});
 
@@ -79,8 +79,8 @@
 			window.addEventListener(
 				"resize",
 				() => {
-					riveA.resizeDrawingSurfaceToCanvas();
-					riveB.resizeDrawingSurfaceToCanvas();
+					donutA.resizeDrawingSurfaceToCanvas();
+					donutB.resizeDrawingSurfaceToCanvas();
 				},
 				false
 			);
