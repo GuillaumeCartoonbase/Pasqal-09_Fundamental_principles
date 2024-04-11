@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Donut solo</title>
+		<link rel="stylesheet" href="../src/style.css" />
+	</head>
+	<body>
+		<div class="" id="">
+			<input
+				type="range"
+				id="slider1"
+				min="0"
+				max="95"
+				value="0"
+				oninput="setTrigger(this.value)"
+			/>
+		</div>
+		<div>
+			<canvas id="riveCanvasInteract" width="260" height="250"></canvas>
+			<canvas id="riveCanvasAnim" width="260" height="250"></canvas>
+		</div>
+
+		<!-- RIVE  -->
+		<script src="https://unpkg.com/@rive-app/canvas@2.9.1"></script>
+
+		<script>
+			const riveAnimation = new rive.Rive({
+				src: "../rive/int-09_03.riv",
+				canvas: document.getElementById("riveCanvasAnim"),
+				autoplay: true,
+				stateMachines: "anim",
+				onLoad: () => {
+					// Prevent a blurry canvas by using the device pixel ratio
+					riveAnimation.resizeDrawingSurfaceToCanvas();
+				},
+			});
+
+			let sliderRive;
+			const riveInteraction = new rive.Rive({
+				src: "../rive/int-09_03.riv",
+				canvas: document.getElementById("riveCanvasInteract"),
+				autoplay: true,
+				stateMachines: "interaction",
+				onLoad: () => {
+					// Prevent a blurry canvas by using the device pixel ratio
+					riveInteraction.resizeDrawingSurfaceToCanvas();
+
+					const inputs = riveInteraction.stateMachineInputs("interaction"); // get state machine
+					sliderRive = inputs.find((i) => i.name === "slider"); // input in rive
+					sliderRive.value = 0;
+				},
+			});
+
+			const setTrigger = (n) => {
+				sliderRive.value = n;
+			};
+
+			// Resize the drawing surface if the window resizes
+			window.addEventListener(
+				"resize",
+				() => {
+					riveAnimation.resizeDrawingSurfaceToCanvas();
+					riveInteraction.resizeDrawingSurfaceToCanvas();
+				},
+				false
+			);
+		</script>
+	</body>
+</html>
