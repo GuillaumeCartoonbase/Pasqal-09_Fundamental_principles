@@ -6,84 +6,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Donuts</title>
 	</head>
-	<body>
-		<div class="" id="">
-			<input
-				type="range"
-				id="slider1"
-				min="0"
-				max="16"
-				value="0"
-				oninput="setTriggerA(this.value)"
-			/>
-		</div>
-		<div>
-			<canvas id="donut_one" width="500" height="500"></canvas>
-		</div>
-		<div class="" id="">
-			<input
-				type="range"
-				id="slider2"
-				min="0"
-				max="12"
-				value="0"
-				oninput="setTriggerB(this.value)"
-			/>
-		</div>
-		<div>
-			<canvas id="donuts_ten" width="535" height="266"></canvas>
-		</div>
+	
+	 <p>
+	 <a href="./interaction-09-01.html"">link interaction 01</a>
+	 </p>
+	 <p>
+	 <a href="./interaction-09-02.html"">link interaction 02</a>
+	 </p>
 
-		<!-- RIVE  -->
-		<script src="https://unpkg.com/@rive-app/canvas@2.9.1"></script>
-
-		<script>
-			let sliderRiveA;
-			const donutA = new rive.Rive({
-				src: "donut.riv",
-				canvas: document.getElementById("donut_one"),
-				autoplay: true,
-				stateMachines: "interaction",
-				onLoad: () => {
-					// Prevent a blurry canvas by using the device pixel ratio
-					donutA.resizeDrawingSurfaceToCanvas();
-					const inputsA = donutA.stateMachineInputs("interaction"); // get state machine
-					sliderRiveA = inputsA.find((i) => i.name === "slider"); // input in rive
-					sliderRiveA.value = 0;
-				},
-			});
-
-			const setTriggerA = (n) => {
-				sliderRiveA.value = n;
-			};
-
-			let sliderRiveB;
-			const donutB = new rive.Rive({
-				src: "donuts.riv",
-				canvas: document.getElementById("donuts_ten"),
-				autoplay: true,
-				stateMachines: "interaction",
-				onLoad: () => {
-					const inputsB = donutB.stateMachineInputs("interaction"); // get state machine
-					sliderRiveB = inputsB.find((i) => i.name === "number"); // input in rive
-					sliderRiveB.value = 0;
-					// Prevent a blurry canvas by using the device pixel ratio
-					donutB.resizeDrawingSurfaceToCanvas();
-				},
-			});
-
-			const setTriggerB = (n) => {
-				sliderRiveB.value = n;
-			};
-			// Resize the drawing surface if the window resizes
-			window.addEventListener(
-				"resize",
-				() => {
-					donutA.resizeDrawingSurfaceToCanvas();
-					donutB.resizeDrawingSurfaceToCanvas();
-				},
-				false
-			);
-		</script>
 	</body>
 </html>

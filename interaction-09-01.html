@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Donut solo</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div class="" id="">
+			<input
+				type="range"
+				id="slider1"
+				min="0"
+				max="16"
+				value="0"
+				oninput="setTriggerA(this.value)"
+			/>
+		</div>
+		<div>
+			<canvas id="donut_one" width="500" height="500"></canvas>
+		</div>
+
+		<!-- RIVE  -->
+		<script src="https://unpkg.com/@rive-app/canvas@2.9.1"></script>
+
+		<script>
+			let sliderRiveA;
+			const donutA = new rive.Rive({
+				src: "donut.riv",
+				canvas: document.getElementById("donut_one"),
+				autoplay: true,
+				stateMachines: "interaction",
+				onLoad: () => {
+					// Prevent a blurry canvas by using the device pixel ratio
+					donutA.resizeDrawingSurfaceToCanvas();
+					const inputsA = donutA.stateMachineInputs("interaction"); // get state machine
+					sliderRiveA = inputsA.find((i) => i.name === "slider"); // input in rive
+					sliderRiveA.value = 0;
+				},
+			});
+
+			const setTriggerA = (n) => {
+				sliderRiveA.value = n;
+			};
+
+			// Resize the drawing surface if the window resizes
+			window.addEventListener(
+				"resize",
+				() => {
+					donutA.resizeDrawingSurfaceToCanvas();
+				},
+				false
+			);
+		</script>
+	</body>
+</html>
