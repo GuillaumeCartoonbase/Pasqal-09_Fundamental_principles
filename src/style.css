@@ -6,3 +6,17 @@
 canvas {
 	width: 400px;
 }
+#riveCanvasInteract {
+	/* padding: 5px; */
+	/* border: 2px green solid; */
+}
+#riveCanvasAnim {
+	/* padding: 5px; */
+	/* border: 2px red solid; */
+}
+
+.separator {
+	height: 5px;
+	width: 400px;
+	background-color: lightgrey;
+}
